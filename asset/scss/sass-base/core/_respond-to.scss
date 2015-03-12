@@ -1,0 +1,31 @@
+//
+// SASS-BASE - a starter kit for any SASS project
+//
+// Author: Dmitry Monin
+
+$width-mobile: 420px !default;
+$width-small-screen: 768px !default;
+$width-medium-screen: 1024px !default;
+$width-wide-screen: 1280px !default;
+
+@mixin respond-to($media, $type) {
+  $width: 0;
+  @if $media == "mobile" {
+    $width: $width-mobile;
+  }
+  @else if $media == "small-screen" {
+    $width: $width-small-screen;
+  }
+  @else if $media == "medium-screen" {
+    $width: $width-medium-screen;
+  }
+  @else if $media == "wide-screen" {
+    $width: $width-wide-screen;
+  }
+
+  @if ($type == "max") {
+    $width: $width - 1;
+  }
+
+  @media only screen and (#{$type}-width: $width) { @content; }
+}

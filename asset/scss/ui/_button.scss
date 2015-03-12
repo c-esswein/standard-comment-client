@@ -1,0 +1,22 @@
+
+
+.button {
+    display: inline-block;
+    cursor: pointer;
+    margin: 20px;
+    padding: 5px 10px;
+    width: 200px;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid;
+    border-radius: 2px;
+
+    &:hover {
+
+    }
+
+    &.centered {
+        display: block;
+        margin: 20px auto;
+    }
+}

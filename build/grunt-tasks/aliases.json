@@ -1,0 +1,9 @@
+{
+  "default": [],
+
+  "watch": [
+    "initConfig",
+    "connect:server",
+    "concurrent:watch"
+  ]
+}

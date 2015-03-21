@@ -3,4 +3,17 @@
 
 body {
     line-height: 1.5;
+    background: $color-dark-bg;
+    color: #fff;
+
+    font-weight: 400;
+    font-family: 'RobotoDraft', Arial, sans-serif;
+}
+
+.page-content {
+    position: absolute;
+    left: 100px;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }

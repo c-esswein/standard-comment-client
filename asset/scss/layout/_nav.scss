@@ -1,0 +1,22 @@
+
+.page-nav {
+    margin-top: 50px;
+}
+
+.page-nav-item {
+    display: block;
+    padding: 4px;
+
+    img {
+        height: 40px;
+        display: block;
+        margin: auto;
+        padding: 10px 4px;
+    }
+
+    &:hover, &.active {
+        border-left: 4px solid $color-orange;
+        background: #FFF;
+        padding-left: 0;
+    }
+}

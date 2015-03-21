@@ -63,6 +63,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
+/* line 2, ../scss/_base.scss */
+h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 50px;
+}
+
 /* line 6, ../scss/sass-base/core/_clearfix.scss */
 .clear {
   clear: both;
@@ -92,4 +99,140 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 4, ../scss/layout/_core.scss */
 body {
   line-height: 1.5;
+  background: #242E37;
+  color: #fff;
+  font-weight: 400;
+  font-family: 'RobotoDraft', Arial, sans-serif;
+}
+
+/* line 13, ../scss/layout/_core.scss */
+.page-content {
+  position: absolute;
+  left: 100px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/* line 2, ../scss/layout/_sidebar.scss */
+.page-sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  background: #E0E9F0;
+}
+
+/* line 11, ../scss/layout/_sidebar.scss */
+.page-logo {
+  font-weight: 700;
+  color: #000;
+  line-height: 1;
+  padding: 5px;
+  background: #fff;
+}
+
+/* line 20, ../scss/layout/_sidebar.scss */
+.page-sidebar-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* line 2, ../scss/layout/_nav.scss */
+.page-nav {
+  margin-top: 50px;
+}
+
+/* line 6, ../scss/layout/_nav.scss */
+.page-nav-item {
+  display: block;
+  padding: 4px;
+}
+/* line 10, ../scss/layout/_nav.scss */
+.page-nav-item img {
+  height: 40px;
+  display: block;
+  margin: auto;
+  padding: 10px 4px;
+}
+/* line 17, ../scss/layout/_nav.scss */
+.page-nav-item:hover, .page-nav-item.active {
+  border-left: 4px solid #FF9667;
+  background: #FFF;
+  padding-left: 0;
+}
+
+/* line 3, ../scss/ui/_button.scss */
+.button {
+  display: inline-block;
+  cursor: pointer;
+  margin: 20px;
+  padding: 5px 10px;
+  width: 200px;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 2px;
+}
+/* line 18, ../scss/ui/_button.scss */
+.button.centered {
+  display: block;
+  margin: 20px auto;
+}
+
+/* line 3, ../scss/ui/_layer.scss */
+.layer {
+  position: fixed;
+  display: none;
+  width: 600px;
+  max-width: 100%;
+  height: 400px;
+  left: 50%;
+  top: 0;
+  -moz-transform: translate3d(-50%, 100px, 0);
+  -webkit-transform: translate3d(-50%, 100px, 0);
+  transform: translate3d(-50%, 100px, 0);
+  background: #E0E9F0;
+  padding: 20px;
+  -moz-box-shadow: 0px 20px 20px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 20px 20px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 20px 20px 0 rgba(0, 0, 0, 0.2);
+}
+/* line 16, ../scss/ui/_layer.scss */
+.layer.visible {
+  display: block;
+}
+
+/* line 21, ../scss/ui/_layer.scss */
+.layer-close {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+/* line 27, ../scss/ui/_layer.scss */
+.layer-close img {
+  width: 20px;
+}
+/* line 31, ../scss/ui/_layer.scss */
+.layer-close:hover {
+  opacity: .7;
+}
+
+/* line 2, ../scss/views/_about.scss */
+#about-layer {
+  color: #242E37;
+}
+
+/* line 6, ../scss/views/_about.scss */
+.github-link {
+  margin: 10px 0;
+  display: block;
+}
+/* line 10, ../scss/views/_about.scss */
+.github-link img {
+  vertical-align: middle;
+  margin-right: 10px;
 }

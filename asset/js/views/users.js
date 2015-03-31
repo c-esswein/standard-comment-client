@@ -38,6 +38,10 @@ define([
             m = 200, // number of samples per layer
             stack = d3.layout.stack().offset('wiggle');
 
+            console.log(d3.range(n).map(function() {
+            return bumpLayer(m);
+        }));
+
         layers0 = stack(d3.range(n).map(function() {
             return bumpLayer(m);
         })),

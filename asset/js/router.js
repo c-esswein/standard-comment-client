@@ -6,8 +6,9 @@
 define([
     'backbone',
     'views/about',
-    'views/users'
-], function(backbone, AboutView, UserView) {
+    'views/users',
+    'views/articles'
+], function(backbone, AboutView, UserView, ArticleView) {
 
     var viewWrapper = $('#view-wrapper');
     var curView = undefined;
@@ -16,6 +17,7 @@ define([
         routes: {
             'about': 'showAbout',
             'users': 'showUsers',
+            'articles': 'showArticles',
 
             '*actions': 'defaultAction'
         },
@@ -26,14 +28,22 @@ define([
         showUsers: function(param) {
             return new UserView();
         },
+        showArticles: function(param) {
+            return new ArticleView();
+        },
         defaultAction: function(actions) {
-            console.log('No route:', actions);
+            return this.showUsers();
         },
 
         initialize: function() {
 
             this.on('route', function(route, params) {
                 console.log('Route match: ', route, params);
+
+                // mark links
+                var routeHash = document.location.hash;
+                $('.active-nav-link').removeClass('active-nav-link');
+                $('[href="' + routeHash + '"]').addClass('active-nav-link');
             });
 
         },

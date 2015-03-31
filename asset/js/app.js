@@ -24,8 +24,12 @@ require.config({
 
 require([
         'router'
-    ], function(Router) {
+    ], function(router) {
 
+        var app = {
+            navigate: router.navigate
+        };
+        window.app = app;
 
         console.log('app initialized');
 });

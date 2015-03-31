@@ -29,7 +29,7 @@ define([
 
 
         closeLayer: function() {
-            this.$el.removeClass('visible');
+            window.app.navigate('/', {trigger: true});
         }
     });
 

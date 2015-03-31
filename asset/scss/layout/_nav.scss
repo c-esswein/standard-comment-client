@@ -14,9 +14,10 @@
         padding: 10px 4px;
     }
 
-    &:hover, &.active {
+    &:hover, &.active-nav-link {
         border-left: 4px solid $color-orange;
         background: #FFF;
         padding-left: 0;
     }
 }
+

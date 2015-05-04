@@ -43,7 +43,9 @@ define([
             });
         }
     });
-
+/*
+ from=date  &  to=date  &  category=bla  & sub-category=blub  &  username=user  &  with_comments=true
+ */
 
     return commentsView;
 });

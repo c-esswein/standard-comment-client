@@ -7,8 +7,9 @@ define([
     'backbone',
     'views/about',
     'views/users',
-    'views/articles'
-], function(backbone, AboutView, UserView, ArticleView) {
+    'views/articles',
+    'views/comments'
+], function(backbone, AboutView, UserView, ArticleView, CommentsView) {
 
     var viewWrapper = $('#view-wrapper');
     var curView = undefined;
@@ -18,6 +19,7 @@ define([
             'about': 'showAbout',
             'users': 'showUsers',
             'articles': 'showArticles',
+            'comments': 'showComments',
 
             '*actions': 'defaultAction'
         },
@@ -30,6 +32,9 @@ define([
         },
         showArticles: function(param) {
             return new ArticleView();
+        },
+        showComments: function(param) {
+            return new CommentsView();
         },
         defaultAction: function(actions) {
             return this.showUsers();
@@ -48,14 +53,14 @@ define([
 
         },
         execute: function(callback, args) {
-            if(curView && curView.remove) {
+            if (curView && curView.remove) {
                 curView.remove();
             }
 
             if (callback) {
                 curView = callback.apply(this, args);
 
-                if(curView && curView.render) {
+                if (curView && curView.render) {
                     curView.render(viewWrapper);
                 }
             }

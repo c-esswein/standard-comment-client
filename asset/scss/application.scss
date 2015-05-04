@@ -22,9 +22,11 @@
 // ui
 @import "ui/button";
 @import "ui/layer";
+@import "ui/comments-graph";
 
 
 // views
 @import "views/about";
 @import "views/articles";
+@import "views/comments";
 @import "views/users";

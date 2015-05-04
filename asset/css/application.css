@@ -236,3 +236,15 @@ body {
   vertical-align: middle;
   margin-right: 10px;
 }
+
+/* line 4, ../scss/views/_articles.scss */
+.article-view svg {
+  width: 100%;
+  height: auto;
+}
+
+/* line 4, ../scss/views/_comments.scss */
+.comments-view svg {
+  width: 100%;
+  height: auto;
+}

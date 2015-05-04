@@ -1,0 +1,14 @@
+/**
+ * vertical mouse helper
+ */
+
+.mouse-helper {
+  position: absolute;
+  z-index: 19;
+  width: 1px;
+  height: 100%;
+  top: 10px;
+  bottom: 30px;
+  left: 937px;
+  background: #FFF;
+}

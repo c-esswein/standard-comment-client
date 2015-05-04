@@ -6,8 +6,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'd3'
-], function($, _, backbone, d3, CommentApi, testData, articleTemplate) {
+  'd3',
+
+  'ui/MouseHelper'
+], function($, _, backbone, d3, MouseHelper) {
 
   function transformData(totalData, layers) {
     var transData = [];
@@ -29,6 +31,8 @@ define([
   }
 
   function renderStreamGraph(el, data, width) {
+    var wrapper = d3.select(el.toArray()[0]);
+
     var n = 6, // number of layers
       m = 24 * 60, // number of samples per layer
       stack = d3.layout.stack().offset('wiggle');
@@ -71,7 +75,7 @@ define([
         return y(d.y0 + d.y);
       });
 
-    var svg = d3.select(el.toArray()[0]).append('svg')
+    var svg = wrapper.append('svg')
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', '0 0 ' + width + ' ' + height);
@@ -84,7 +88,7 @@ define([
 
 
     var color = d3.scale.linear()
-      .range(['#b0e4e2', '#dce09f']);
+      .range(['#4ba9df', '#80d426', '#f4b723', '#474f60']);
     //var colors = ['#ef2212', '#ffffff', '#000000', '#88ddee', '#123eee'];
 
     svg.selectAll('path')
@@ -96,6 +100,9 @@ define([
         //return colors[i];
         return color(Math.random());
       });
+
+
+    MouseHelper.attach(svg, d3.select('.mouse-helper'));
   }
 
   return {

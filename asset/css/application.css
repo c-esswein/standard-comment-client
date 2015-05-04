@@ -68,6 +68,7 @@ h1 {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 50px;
+  padding: 20px 0 20px;
 }
 
 /* line 6, ../scss/sass-base/core/_clearfix.scss */
@@ -221,6 +222,21 @@ body {
   opacity: .7;
 }
 
+/**
+ * vertical mouse helper
+ */
+/* line 5, ../scss/ui/_mouse-helper.scss */
+.mouse-helper {
+  position: absolute;
+  z-index: 19;
+  width: 1px;
+  height: 100%;
+  top: 10px;
+  bottom: 30px;
+  left: 937px;
+  background: #FFF;
+}
+
 /* line 2, ../scss/views/_about.scss */
 #about-layer {
   color: #242E37;
@@ -247,4 +263,9 @@ body {
 .comments-view svg {
   width: 100%;
   height: auto;
+}
+
+/* line 10, ../scss/views/_comments.scss */
+.comment-graph {
+  position: relative;
 }

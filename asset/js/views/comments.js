@@ -36,8 +36,11 @@ define([
             });*/
 
             var comments = testData.genCommentData();
-            StreamGraph.render(newEl, comments.data, wrapper.width());
+            StreamGraph.render($('.comment-graph', newEl), comments.data, wrapper.width());
 
+            CommentApi.getCategories().done(function(data) {
+              console.log(data);
+            });
         }
     });
 

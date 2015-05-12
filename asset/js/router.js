@@ -37,7 +37,7 @@ define([
             return new CommentsView();
         },
         defaultAction: function(actions) {
-            return this.showUsers();
+            return this.showComments();
         },
 
         initialize: function() {

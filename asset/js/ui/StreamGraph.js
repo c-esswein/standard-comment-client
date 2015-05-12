@@ -6,10 +6,8 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'd3',
-
-  'ui/MouseHelper'
-], function($, _, backbone, d3, MouseHelper) {
+  'd3'
+], function($, _, backbone, d3) {
 
   function transformData(totalData, layers) {
     var transData = [];
@@ -99,9 +97,6 @@ define([
         //return colors[i];
         return color(Math.random());
       });
-
-
-    MouseHelper.attach(svg, d3.select('.mouse-helper'));
   }
 
   return {

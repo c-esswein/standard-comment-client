@@ -13,16 +13,16 @@ define([
 
   function transformData(totalData, layers) {
     var transData = [];
-    for (var i = 0; i < layers; i++) {
+    for (var i = 0; i < layers.length; i++) {
       var res = [];
       totalData.forEach(function(item) {
         if (!(item.date instanceof Date)) {
-          item.date = new Date(item.date);
+          item.date = new Date(item.date + ':00');
         }
 
         res.push({
           x: item.date,
-          y: item['topic_comments']['TestCategory' + (i + 1)]
+          y: item['categories'][layers[i]] || 0
         });
       });
       transData.push(res);
@@ -30,14 +30,13 @@ define([
     return transData;
   }
 
-  function renderStreamGraph(el, data, width) {
+  function renderStreamGraph(el, data, layers, width) {
     var wrapper = d3.select(el.toArray()[0]);
 
-    var n = 6, // number of layers
-      m = 24 * 60, // number of samples per layer
-      stack = d3.layout.stack().offset('wiggle');
+    var m = data.length; //24 * 60, // number of samples per layer
+    var stack = d3.layout.stack().offset('wiggle');
 
-    var layerData = stack(transformData(data, n));
+    var layerData = stack(transformData(data, layers));
     var height = 500;
 
     var x = d3.time.scale()

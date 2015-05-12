@@ -10,10 +10,9 @@ define([
 
     'api/comment-api',
     'ui/StreamGraph',
-    'test-data',
 
     'text!/asset/templates/comments.html'
-], function($, _, backbone, d3, CommentApi, StreamGraph, testData, commentsTemplate) {
+], function($, _, backbone, d3, CommentApi, StreamGraph, commentsTemplate) {
 
     var commentsView = backbone.View.extend({
 
@@ -30,17 +29,14 @@ define([
             wrapper.append(newEl);
             this.setElement(newEl);
 
-
-            /*CommentApi.getCommentHistory().done(function(comments){
-                renderStreamGraph(newEl, comments.data, wrapper.width());
-            });*/
-
-            var comments = testData.genCommentData();
-            StreamGraph.render($('.comment-graph', newEl), comments.data, wrapper.width());
-
-            CommentApi.getCategories().done(function(data) {
-              console.log(data);
+            CommentApi.getCommentHistory().done(function(comments) {
+                var categories = CommentApi.categories;
+                StreamGraph.render($('.comment-graph', newEl), comments.data, categories, wrapper.width());
             });
+
+            /*CommentApi.getCategories().done(function(data) {
+              console.log(data);
+            });*/
         }
     });
 /*

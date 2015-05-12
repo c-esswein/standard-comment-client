@@ -9,11 +9,22 @@ define([
 ], function($, api, testData) {
 
   function getCommentHistory(date) {
-    return api.apiCall('/comments');
+
+    //unit -> minutes, hours, days, months, years
+
+    var data = {
+      'from': '2015-01-01 00:00:00', //api.formatServerDate()
+      'to': '2015-01-02 00:00:00', //api.formatServerDate()
+      //'username': 'Z\'fleiß-garnix',
+      'unit': 'hours'
+      //'category': 'Inland'
+    };
+
+    return api.apiCall('/comments', 'GET', data);
   }
 
-  var categories;
-  function getCategories() {
+  var subCategories;
+  function getSubCategories() {
     var deferred;
 
     // cache categories
@@ -30,8 +41,24 @@ define([
     return deferred;
   }
 
+  var categories = [
+  'Etat',
+  'Gesundheit',
+  'Inland',
+  'International',
+  'Kultur',
+  'Lifestyle',
+  'Panorama',
+  'Reisen',
+  'Sport',
+  'Web',
+  'Wirtschaft',
+  'Wissenschaft'
+  ];
+
   return {
     getCommentHistory: getCommentHistory,
-    getCategories: getCategories
+    categories: categories,
+    getSubCategories: getSubCategories
   };
 });

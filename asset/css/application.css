@@ -183,6 +183,15 @@ body {
   margin: 20px auto;
 }
 
+/* line 3, ../scss/ui/_filters.scss */
+.filters {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: #FFF;
+  padding: 10px;
+}
+
 /* line 3, ../scss/ui/_layer.scss */
 .layer {
   position: fixed;

@@ -88,15 +88,73 @@ define([
       .range(['#4ba9df', '#80d426', '#f4b723', '#474f60']);
     //var colors = ['#ef2212', '#ffffff', '#000000', '#88ddee', '#123eee'];
 
-    svg.selectAll('path')
+
+
+    var tooltip = d3.select('body')
+    .append('div')
+    .attr('class', 'remove')
+    .style('position', 'absolute')
+    .style('z-index', '20')
+    .style('visibility', 'hidden')
+    .style('top', '30px')
+    .style('left', '55px');
+
+
+    svg.selectAll('.stream-layer')
       .data(layerData)
       .enter().append('path')
+      .attr('class', 'stream-layer')
       .attr('d', area)
-      .classed('comments-graph', true)
       .style('fill', function(d, i) {
         //return colors[i];
         return color(Math.random());
-      });
+      })
+
+// TODO in own file
+      .attr('opacity', 1)
+      .on('mouseover', function(d, i) {
+        svg.selectAll('.stream-layer').transition()
+        .duration(250)
+        .attr('opacity', function(d, j) {
+          return j != i ? 0.6 : 1;
+      })})
+
+      .on('mousemove', function(d, i) {
+        mousex = d3.mouse(this);
+        mousex = mousex[0];
+        var invertedx = x.invert(mousex);
+        invertedx = invertedx.getMonth() + invertedx.getDate();
+
+        console.log(layers[i]);
+
+/*        console.log(invertedx);
+        console.log(d);
+        var selected = (d.values);
+        for (var k = 0; k < selected.length; k++) {
+          datearray[k] = selected[k].date
+          datearray[k] = datearray[k].getMonth() + datearray[k].getDate();
+        }
+
+        mousedate = datearray.indexOf(invertedx);
+        pro = d.values[mousedate].value;*/
+
+        d3.select(this)
+        .classed('hover', true)
+        .attr('stroke', '#fff')
+        .attr('stroke-width', '0.5px');
+        //tooltip.html( '<p>' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'visible');
+
+      })
+      .on('mouseout', function(d, i) {
+       svg.selectAll('.stream-layer')
+        .transition()
+        .duration(250)
+        .attr('opacity', '1');
+        d3.select(this)
+        .classed('hover', false)
+        .attr('stroke-width', '0px');
+        //tooltip.html( '<p>' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'hidden');
+    });
   }
 
   return {

@@ -28,13 +28,13 @@ define([
     var deferred;
 
     // cache categories
-    if (categories) {
+    if (subCategories) {
       deferred = $.Deferred();
-      deferred.resolve(categories);
+      deferred.resolve(subCategories);
     } else {
       deferred = api.apiCall('/categories.json');
       deferred.done(function(data) {
-        categories = data;
+        subCategories = data;
       });
     }
 

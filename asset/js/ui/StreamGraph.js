@@ -17,7 +17,7 @@ define([
       var res = [];
       totalData.forEach(function(item) {
         if (!(item.date instanceof Date)) {
-          item.date = new Date(item.date + ':00');
+          item.date = new Date(item.date);
         }
 
         res.push({

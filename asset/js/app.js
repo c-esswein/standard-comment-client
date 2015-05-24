@@ -23,8 +23,9 @@ require.config({
 });
 
 require([
-        'router'
-    ], function(router) {
+        'router',
+        'ui/Filters'
+    ], function(router, Filters) {
 
         var app = {
             navigate: router.navigate

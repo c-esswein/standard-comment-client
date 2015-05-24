@@ -5,16 +5,19 @@
 
 define([
   'jquery',
-  'api/api'
-], function($, api, testData) {
+  'api/api',
+  'ui/Filters'
+], function($, api, Filters) {
 
-  function getCommentHistory(date) {
+  function getCommentHistory() {
 
     //unit -> minutes, hours, days, months, years
 
+    var filters = Filters.getFormData();
+
     var data = {
-      'from': '2015-01-01 00:00:00', //api.formatServerDate()
-      'to': '2015-01-02 00:00:00', //api.formatServerDate()
+      'from': filters.from + ' 00:00:00',
+      'to': filters.to + ' 00:00:00',
       //'username': 'Z\'fleiß-garnix',
       'unit': 'hours'
       //'category': 'Inland'
@@ -42,18 +45,18 @@ define([
   }
 
   var categories = [
-  'Etat',
-  'Gesundheit',
-  'Inland',
-  'International',
-  'Kultur',
-  'Lifestyle',
-  'Panorama',
-  'Reisen',
-  'Sport',
-  'Web',
-  'Wirtschaft',
-  'Wissenschaft'
+    'Etat',
+    'Gesundheit',
+    'Inland',
+    'International',
+    'Kultur',
+    'Lifestyle',
+    'Panorama',
+    'Reisen',
+    'Sport',
+    'Web',
+    'Wirtschaft',
+    'Wissenschaft'
   ];
 
   return {

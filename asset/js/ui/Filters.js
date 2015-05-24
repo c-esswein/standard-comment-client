@@ -4,28 +4,36 @@
 
 define([
   'jquery',
-  'd3'
-], function($, d3) {
+  'd3',
+  'utils'
+], function($, d3, utils) {
 
-  var filters = backbone.View.extend({
+  var filters = $('.filters-form');
 
-    template: _.template(articleTemplate),
+  (function init() {
+    var d = new Date();
+    $('.filter-date-from').val('2015-01-01'); //getDateString(d));
 
-    events: {
-    },
+    d.setMonth(d.getMonth() + 1);
+    $('.filter-date-to').val('2015-01-02'); //getDateString(d));
 
-    render: function(wrapper) {
-      var data = {};
-      var compiledTemplate = this.template(data);
-      var newEl = $(compiledTemplate);
+    filters.trigger('change');
+  })();
 
-      wrapper.append(newEl);
-      this.setElement(newEl);
+  filters.on('change', function() {
 
-    }
   });
 
-  return {
+  function getDateString(dateObj) {
+    return dateObj.toISOString().substr(0, 10);
+  }
 
+  return {
+    getFormData: function() {
+      return utils.getFormData(filters);
+    },
+    onChange: function(callback) {
+      filters.on('change', callback);
+    }
   };
 });

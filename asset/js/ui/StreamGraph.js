@@ -28,9 +28,21 @@ define([
     return transData;
   }
 
-  function renderStreamGraph(el, data, layers, width) {
-    var wrapper = d3.select(el.toArray()[0]);
+  var width;
+  var wrapper;
+  function renderStreamGraph(el, widthP) {
+    wrapper = d3.select(el.toArray()[0]);
+    width = widthP;
 
+    var height = 500;
+
+    var svg = wrapper.append('svg')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('viewBox', '0 0 ' + width + ' ' + height);
+  }
+
+  function reDraw(data, layers) {
     var m = data.length; //24 * 60, // number of samples per layer
     var stack = d3.layout.stack().offset('wiggle');
 
@@ -72,7 +84,7 @@ define([
         return y(d.y0 + d.y);
       });
 
-    var svg = wrapper.append('svg')
+    var svg = wrapper.select('svg')
       .attr('width', width)
       .attr('height', height)
       .attr('viewBox', '0 0 ' + width + ' ' + height);
@@ -158,6 +170,7 @@ define([
   }
 
   return {
-    render: renderStreamGraph
+    render: renderStreamGraph,
+    reDraw: reDraw
   };
 });

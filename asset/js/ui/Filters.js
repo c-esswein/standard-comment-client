@@ -30,7 +30,10 @@ define([
 
   return {
     getFormData: function() {
-      return utils.getFormData(filters);
+      var data = utils.getFormData(filters);
+      data['average'] = data['average'] === 'on';
+      console.log(data);
+      return data;
     },
     onChange: function(callback) {
       filters.on('change', callback);

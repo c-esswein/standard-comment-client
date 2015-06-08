@@ -35,6 +35,11 @@ define([
             /*CommentApi.getCategories().done(function(data) {
               console.log(data);
             });*/
+
+
+            Filters.onChange(function() {
+                redrawGraph();
+            });
         }
     });
 
@@ -45,9 +50,6 @@ define([
         });
     }
 
-    Filters.onChange(function() {
-        redrawGraph();
-    });
 
     return commentsView;
 });

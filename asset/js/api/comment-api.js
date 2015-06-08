@@ -23,6 +23,11 @@ define([
       //'category': 'Inland'
     };
 
+    if (filters['average']) {
+      delete data['unit'];
+      data['average'] = 'days';
+    }
+
     return api.apiCall('/comments', 'GET', data);
   }
 

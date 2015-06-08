@@ -15,12 +15,18 @@ define([
       var res = [];
       totalData.forEach(function(item) {
         if (!(item.date instanceof Date)) {
+          // TODO dirty fix
+          if (item.date.length < 5) {
+            item.date = '2015-01-01 ' + item.date + ':00';
+          }
+
           item.date = new Date(item.date);
         }
 
+        var val = item['categories'][layers[i]] || {};
         res.push({
           x: item.date,
-          y: item['categories'][layers[i]] || 0
+          y: val['avg_comments'] || 0
         });
       });
       transData.push(res);

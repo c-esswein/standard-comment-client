@@ -110,7 +110,7 @@ body {
 .page-content {
   position: absolute;
   left: 100px;
-  right: 0;
+  right: 20px;
   top: 0;
   bottom: 0;
 }
@@ -238,7 +238,7 @@ body {
 /* line 3, ../scss/ui/_filters.scss */
 .filters {
   position: absolute;
-  right: 20px;
+  right: 0px;
   top: 20px;
   background: #FFF;
   padding: 10px;
@@ -319,6 +319,30 @@ body {
 .article-view svg {
   width: 100%;
   height: auto;
+}
+
+/* line 12, ../scss/views/_articles.scss */
+.article-list .article {
+  padding: 10px;
+  margin: 10px;
+  background: #fff;
+  color: #191919;
+}
+/* line 23, ../scss/views/_articles.scss */
+.article-list .article-info {
+  font-size: 60%;
+}
+/* line 27, ../scss/views/_articles.scss */
+.article-list .article-text {
+  font-size: 80%;
+}
+
+/* line 40, ../scss/views/_articles.scss */
+.article-discussion {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid;
+  background: #68727F;
 }
 
 /* line 4, ../scss/views/_comments.scss */

@@ -7,9 +7,11 @@ define([
     'underscore',
     'backbone',
     'd3',
+    'api/article',
 
-    'text!/asset/templates/articles.html'
-], function($, _, backbone, d3, articleTemplate) {
+    'text!/asset/templates/articles.html',
+    'text!/asset/templates/articles-article.html'
+], function($, _, backbone, d3, ArticlesApi, articleTemplate, aricleTmpl) {
 
     var articleView = backbone.View.extend({
 
@@ -26,8 +28,29 @@ define([
             wrapper.append(newEl);
             this.setElement(newEl);
 
+            redrawGraph();
         }
     });
+
+    var articleTmpl;
+    function redrawGraph() {
+        // TODO
+        articleTmpl = _.template(aricleTmpl);
+
+        ArticlesApi.getArticles().done(function(articles) {
+            for (var i = 0; i < articles.data.length; i++) {
+                drawArticle(articles.data[i]);
+            }
+        });
+    }
+
+    function drawArticle(articleData) {
+        articleData['article_url'] = '#articles/' + articleData['article_id'];
+        articleData['text_short'] = articleData['text'].substr(0, 300);
+
+        var html = articleTmpl(articleData);
+        $('.article-list').append(html)
+    }
 
 
     return articleView;

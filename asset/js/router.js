@@ -7,10 +7,11 @@ define([
     'backbone',
     'views/about',
     'views/users',
+    'views/user',
     'views/articles',
     'views/article',
     'views/comments'
-], function(backbone, AboutView, UserView, ArticlesView, ArticleView, CommentsView) {
+], function(backbone, AboutView, UsersView, UserView, ArticlesView, ArticleView, CommentsView) {
 
     var viewWrapper = $('#view-wrapper');
     var curView = undefined;
@@ -19,6 +20,7 @@ define([
         routes: {
             'about': 'showAbout',
             'users': 'showUsers',
+            'users/:id': 'showUser',
             'articles': 'showArticles',
             'articles/:id': 'showArticle',
             'comments': 'showComments',
@@ -30,6 +32,9 @@ define([
             return new AboutView();
         },
         showUsers: function(param) {
+            return new UsersView();
+        },
+        showUser: function(param) {
             return new UserView();
         },
         showArticles: function(param) {

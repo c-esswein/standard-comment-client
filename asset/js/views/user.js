@@ -1,5 +1,5 @@
 /**
- * users view
+ * user view
  */
 
 define([
@@ -9,7 +9,7 @@ define([
     'd3',
     'api/user',
 
-    'text!/asset/templates/users.html'
+    'text!/asset/templates/user.html'
 ], function($, _, backbone, d3, UserApi, userTemplate) {
 
     var usersView = backbone.View.extend({
@@ -20,7 +20,7 @@ define([
             //'click #transition-btn': changeGraph
         },
 
-        render: function(wrapper) {
+        render: function(wrapper, params) {
             var data = {};
             var compiledTemplate = this.template(data);
             var newEl = $(compiledTemplate);
@@ -28,8 +28,8 @@ define([
             wrapper.append(newEl);
             this.setElement(newEl);
 
-            UserApi.getUsers().done(function(usersData) {
-
+            UserApi.getUser(params[0]).done(function(userData) {
+                console.log(userData);
             });
         }
     });

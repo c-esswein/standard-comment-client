@@ -30,25 +30,27 @@ define([
             wrapper.append(newEl);
             this.setElement(newEl);
 
-            StreamGraph.render($('.comment-graph', newEl), wrapper.width());
+            function redrawGraph() {
+                CommentApi.getCommentHistory().done(function(comments) {
+                    var categories = CommentApi.categories;
+                    var el = $('.comment-graph', newEl);
+                    el.html('');
+                    StreamGraph.render(el, wrapper.width(), comments.data, categories);
+                });
+            }
 
             /*CommentApi.getCategories().done(function(data) {
               console.log(data);
             });*/
 
-
+            redrawGraph();
             Filters.onChange(function() {
                 redrawGraph();
             });
         }
     });
 
-    function redrawGraph() {
-        CommentApi.getCommentHistory().done(function(comments) {
-            var categories = CommentApi.categories;
-            StreamGraph.reDraw(comments.data, categories);
-        });
-    }
+
 
 
     return commentsView;

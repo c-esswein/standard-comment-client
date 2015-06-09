@@ -327,17 +327,20 @@ body {
   margin: 10px;
   background: #fff;
   color: #191919;
+  -moz-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
 }
-/* line 23, ../scss/views/_articles.scss */
+/* line 24, ../scss/views/_articles.scss */
 .article-list .article-info {
   font-size: 60%;
 }
-/* line 27, ../scss/views/_articles.scss */
+/* line 28, ../scss/views/_articles.scss */
 .article-list .article-text {
   font-size: 80%;
 }
 
-/* line 40, ../scss/views/_articles.scss */
+/* line 41, ../scss/views/_articles.scss */
 .article-discussion {
   padding: 10px;
   margin: 10px 0;
@@ -354,4 +357,8 @@ body {
 /* line 10, ../scss/views/_comments.scss */
 .comment-graph {
   position: relative;
+}
+/* line 13, ../scss/views/_comments.scss */
+.comment-graph text {
+  fill: #fff;
 }

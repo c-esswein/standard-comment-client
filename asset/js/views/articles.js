@@ -10,8 +10,9 @@ define([
     'api/article',
 
     'text!/asset/templates/articles.html',
-    'text!/asset/templates/articles-article.html'
-], function($, _, backbone, d3, ArticlesApi, articleTemplate, aricleTmpl) {
+    'text!/asset/templates/articles-article.html',
+    'ui/Filters'
+], function($, _, backbone, d3, ArticlesApi, articleTemplate, aricleTmpl, Filters) {
 
     var articleView = backbone.View.extend({
 
@@ -29,12 +30,15 @@ define([
             this.setElement(newEl);
 
             redrawGraph();
+            Filters.onChange(function() {
+                redrawGraph();
+            });
         }
     });
 
     var articleTmpl;
     function redrawGraph() {
-        // TODO
+        $('.article-list').html('');
         articleTmpl = _.template(aricleTmpl);
 
         ArticlesApi.getArticles().done(function(articles) {

@@ -8,11 +8,12 @@ define([
     'backbone',
     'd3',
     'api/article',
+    'utils',
 
     'text!/asset/templates/articles.html',
     'text!/asset/templates/articles-article.html',
     'ui/Filters'
-], function($, _, backbone, d3, ArticlesApi, articleTemplate, aricleTmpl, Filters) {
+], function($, _, backbone, d3, ArticlesApi, utils, articleTemplate, aricleTmpl, Filters) {
 
     var articleView = backbone.View.extend({
 
@@ -50,7 +51,7 @@ define([
 
     function drawArticle(articleData) {
         articleData['article_url'] = '#articles/' + articleData['article_id'];
-        articleData['text_short'] = articleData['text'].substr(0, 300);
+        articleData['text_short'] = utils.strip(articleData['text']).substr(0, 300);
 
         var html = articleTmpl(articleData);
         $('.article-list').append(html)

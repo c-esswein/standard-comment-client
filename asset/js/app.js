@@ -23,14 +23,25 @@ require.config({
 });
 
 require([
+        'underscore',
         'router',
         'ui/Filters'
-    ], function(router, Filters) {
+    ], function(_, router, Filters) {
 
         var app = {
             navigate: router.navigate
         };
         window.app = app;
+
+        _.template.formatdate = function(date) {
+            var d = new Date(date)
+                fragments = [
+                    d.getDate(),
+                    d.getMonth() + 1,
+                    d.getFullYear()
+                ];
+            return fragments.join('.');
+        };
 
         console.log('app initialized');
 });

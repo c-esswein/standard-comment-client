@@ -1,10 +1,10 @@
-<article class="article">
-  <a class="article-link" href="<%= article_url %>"><%= date %></a>
+<a class="article" href="<%= article_url %>">
   <div class="article-info">
     <span class="article-cat"><%= category %></span> -
     <span class="article-subcat"><%= sub_category %></span> :
-    <span class="article-date"><%= date %></span>
+    <span class="article-date"><%= _.template.formatdate(date) %></span>
   </div>
+  <img src="<%= image_url %>" class="article-img" />
   <h3><%= title %></h3>
   <div class="article-text"><%= text_short %></div>
-</article>
+</a>

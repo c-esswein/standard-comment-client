@@ -2,15 +2,17 @@
   <h1>Article:</h1>
 
   <div class="article-header">
-    <a class="article-link" href="<d%=article_url %>"><d%= date %></a>
     <div class="article-info">
-      <span class="article-cat"><d%= category %></span> -
-      <span class="article-subcat"><d%= sub_category %></span> :
-      <span class="article-date"><d%= date %></span>
+      <span class="article-cat"><%= category %></span> -
+      <span class="article-subcat"><%= sub_category %></span> :
+      <span class="article-date"><%= _.template.formatdate(date) %></span>
     </div>
-    <h3><d%= title %></h3>
-    <div class="article-text"><d%= text %></div>
+    <img src="<%= image_url %>" class="article-img" />
+    <h3><%= title %></h3>
+    <div class="article-text"><%= text_short %></div>
+    <a class="article-link" href="<%= url %>">view on standard-website</a>
   </div>
-
+<br />
+  <h3>Discussions:</h3>
   <div class="discussions"></div>
 </div>

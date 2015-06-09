@@ -115,6 +115,12 @@ body {
   bottom: 0;
 }
 
+/* line 21, ../scss/layout/_core.scss */
+h3 {
+  font-size: 120%;
+  font-weight: bold;
+}
+
 /* line 2, ../scss/layout/_sidebar.scss */
 .page-sidebar {
   position: fixed;
@@ -330,22 +336,68 @@ body {
   -moz-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
   -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  width: 30%;
+  display: inline-block;
+  overflow: hidden;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+  text-decoration: none;
+  vertical-align: top;
 }
-/* line 24, ../scss/views/_articles.scss */
+/* line 26, ../scss/views/_articles.scss */
+.article-list .article:hover {
+  opacity: .8;
+}
+/* line 31, ../scss/views/_articles.scss */
+.article-list .article-img {
+  float: left;
+  max-width: 80px;
+  max-height: 80px;
+  margin: 7px;
+}
+/* line 42, ../scss/views/_articles.scss */
 .article-list .article-info {
   font-size: 60%;
 }
-/* line 28, ../scss/views/_articles.scss */
+/* line 46, ../scss/views/_articles.scss */
 .article-list .article-text {
   font-size: 80%;
 }
 
-/* line 41, ../scss/views/_articles.scss */
+/* line 51, ../scss/views/_articles.scss */
+.article-header {
+  background-color: #FFF;
+  padding: 10px;
+  color: #000;
+  font-size: 110%;
+}
+/* line 57, ../scss/views/_articles.scss */
+.article-header .article-img {
+  float: left;
+  max-width: 120px;
+  max-height: 120px;
+  margin: 7px;
+}
+
+/* line 69, ../scss/views/_articles.scss */
 .article-discussion {
   padding: 10px;
   margin: 10px 0;
   border: 1px solid;
   background: #68727F;
+  position: relative;
+}
+/* line 76, ../scss/views/_articles.scss */
+.article-discussion .senti-score {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  color: #000;
+  background: #fff;
+  padding: 5px;
 }
 
 /* line 4, ../scss/views/_comments.scss */

@@ -51,7 +51,7 @@ define([
 
     function drawArticle(articleData) {
         articleData['article_url'] = '#articles/' + articleData['article_id'];
-        articleData['text_short'] = utils.strip(articleData['text']).substr(0, 300);
+        articleData['text_short'] = utils.strip(articleData['text']).substr(0, 300) + '...';
 
         var html = articleTmpl(articleData);
         $('.article-list').append(html)

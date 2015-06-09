@@ -1,6 +1,7 @@
 
 - Users view --> top user anzeigen
 - comment diagram
-  -> zeitskala
+X  -> zeitskala
   -> hover info
 - User view -> balkendiagram
+- unbind filter listen

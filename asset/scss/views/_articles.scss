@@ -68,17 +68,19 @@
 
 .article-discussion {
   padding: 10px;
+  padding-right: 25px;
   margin: 10px 0;
-  border: 1px solid;
+  //border: 1px solid;
   background: #68727F;
   position: relative;
+  @include box-shadow(0 2px 1px rgba(0, 0, 0, 0.2));
 
   .senti-score {
     position: absolute;
     right: 3px;
     top: 3px;
     color: #000;
-    background: #fff;
+    //background: #fff;
     padding: 5px;
   }
 }

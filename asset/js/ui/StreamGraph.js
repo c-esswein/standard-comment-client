@@ -50,11 +50,10 @@ define([
     var layerData = stack(transformData(data, layers));
     var height = 500;
 
+    var startDate = data[0].date,
+        endDate = data[data.length - 1].date;
     var x = d3.time.scale()
-      .domain([
-        data[0].date,
-        data[data.length - 1].date
-      ])
+      .domain([startDate, endDate])
       .range([0, width]);
 
     var y = d3.scale.linear()
@@ -65,12 +64,19 @@ define([
       })])
       .range([height, 0]);
 
+    var tickFormat = d3.time.format('%H:%M');
+    // set tickFormat for greater ranges:
+    if (endDate - startDate > 24*60*60*1000) {
+      tickFormat = d3.time.format('%d.%m');
+    }
+
 
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient('bottom')
-      .ticks(d3.time.hours, 1)
-      .tickFormat(d3.time.format('%H:%M'))
+      //.ticks(d3.time.hours, 1)
+      .ticks(20)
+      .tickFormat(tickFormat)
       .tickSize(0)
       .tickPadding(8);
 

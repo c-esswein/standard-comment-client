@@ -27,7 +27,7 @@ define([
             var view = this;
 
             ArticlesApi.getArticle(articleId).done(function(articleData) {
-                articleData['article']['text_short'] = utils.strip(articleData['article']['text']).substr(0, 300);
+                articleData['article']['text_short'] = utils.strip(articleData['article']['text']).substr(0, 300) + '...';
                 var compiledTemplate = view.template(articleData['article']);
                 var newEl = $(compiledTemplate);
                 wrapper.append(newEl);

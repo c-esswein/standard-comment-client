@@ -10,8 +10,9 @@ define([
     'views/user',
     'views/articles',
     'views/article',
-    'views/comments'
-], function(backbone, AboutView, UsersView, UserView, ArticlesView, ArticleView, CommentsView) {
+    'views/comments',
+    'ui/Filters'
+], function(backbone, AboutView, UsersView, UserView, ArticlesView, ArticleView, CommentsView, Filters) {
 
     var viewWrapper = $('#view-wrapper');
     var curView = undefined;
@@ -73,6 +74,10 @@ define([
                 if (curView && curView.render) {
                     curView.render(viewWrapper, args);
                 }
+
+                var showFilters = curView && !curView.hideFilters;
+                console.log(showFilters);
+                Filters.setVisibility(showFilters);
             }
         }
     });

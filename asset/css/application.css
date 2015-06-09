@@ -116,9 +116,15 @@ body {
 }
 
 /* line 21, ../scss/layout/_core.scss */
+h2 {
+  font-size: 140%;
+  font-weight: 700;
+}
+
+/* line 26, ../scss/layout/_core.scss */
 h3 {
   font-size: 120%;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 /* line 2, ../scss/layout/_sidebar.scss */
@@ -249,6 +255,10 @@ h3 {
   background: #FFF;
   padding: 10px;
   color: #6C6C6C;
+}
+/* line 12, ../scss/ui/_filters.scss */
+.filters.hide {
+  display: none;
 }
 
 /* line 3, ../scss/ui/_layer.scss */
@@ -413,4 +423,10 @@ h3 {
 /* line 13, ../scss/views/_comments.scss */
 .comment-graph text {
   fill: #fff;
+}
+
+/* line 3, ../scss/views/_users.scss */
+.user-info li {
+  list-style-type: circle;
+  list-style-position: inside;
 }

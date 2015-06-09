@@ -15,6 +15,7 @@ define([
 ], function($, _, backbone, utils, d3, ArticlesApi, discussionTmplRaw, articleTemplate) {
 
     var articleView = backbone.View.extend({
+        hideFilters: true,
 
         template: _.template(articleTemplate),
 
@@ -58,8 +59,6 @@ define([
             });
         }
     });
-
-
 
     return articleView;
 });

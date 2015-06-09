@@ -1,0 +1,6 @@
+
+- Users view --> top user anzeigen
+- comment diagram
+  -> zeitskala
+  -> hover info
+- User view -> balkendiagram

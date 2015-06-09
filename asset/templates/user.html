@@ -1,5 +1,15 @@
 <div class="user-view">
   <h1>User</h1>
+  <h2><%= user_name %></h2>
 
-
+  <ul class="user-info">
+    <li>avg_quality_score: <%= avg_quality_score %> </li>
+    <li>avg_rating: <%= avg_rating %></li>
+    <li>avg_sentiment_score: <%= avg_sentiment_score %></li>
+    <li>num_comments: <%= num_comments %></li>
+    <li>num_replies: <%= num_replies %></li>
+  </ul>
+<br />
+  <h3>Comment-Activity</h3>
+  <div class="comment-graph"></div>
 </div>

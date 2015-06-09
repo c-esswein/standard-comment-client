@@ -8,11 +8,14 @@ define([
     'backbone',
     'd3',
     'api/user',
+    'api/comment-api',
+    'ui/StreamGraph',
 
     'text!/asset/templates/user.html'
-], function($, _, backbone, d3, UserApi, userTemplate) {
+], function($, _, backbone, d3, UserApi, CommentApi, StreamGraph, userTemplate) {
 
     var usersView = backbone.View.extend({
+        hideFilters: true,
 
         template: _.template(userTemplate),
 
@@ -21,15 +24,21 @@ define([
         },
 
         render: function(wrapper, params) {
-            var data = {};
-            var compiledTemplate = this.template(data);
-            var newEl = $(compiledTemplate);
+            var view = this;
+            var userName = params[0];
 
-            wrapper.append(newEl);
-            this.setElement(newEl);
+            UserApi.getUser(userName).done(function(userData) {
+                var tmplData = userData['statistics'];
+                tmplData['user_name'] = userName;
+                var compiledTemplate = view.template(tmplData);
+                var newEl = $(compiledTemplate);
 
-            UserApi.getUser(params[0]).done(function(userData) {
-                console.log(userData);
+                wrapper.append(newEl);
+                view.setElement(newEl);
+
+                var categories = CommentApi.categories;
+                var el = $('.comment-graph', newEl);
+                StreamGraph.render(el, wrapper.width(), userData['data'], categories);
             });
         }
     });

@@ -37,6 +37,13 @@ define([
     },
     onChange: function(callback) {
       filters.on('change', callback);
+    },
+    setVisibility: function(isVisible) {
+      if (isVisible) {
+        $('.filters').removeClass('hide');
+      } else {
+        $('.filters').addClass('hide');
+      }
     }
   };
 });

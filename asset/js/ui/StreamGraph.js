@@ -11,6 +11,11 @@ define([
 
   function transformData(totalData, layers) {
     var transData = [];
+    var layerData = {};
+    _.each(layers, function(layer) {
+      layerData[layer] = 0;
+    });
+
     for (var i = 0; i < layers.length; i++) {
       var res = [];
       totalData.forEach(function(item) {
@@ -24,14 +29,23 @@ define([
         }
 
         var val = item['categories'][layers[i]] || {};
+        var num = val['avg_comments'] || 0;
         res.push({
           x: item.date,
-          y: val['avg_comments'] || 0
+          y: num
         });
+
+        layerData[layers[i]] += num;
       });
       transData.push(res);
     }
-    return transData;
+
+    console.log(layerData);
+
+    return {
+      transData: transData,
+      layerData: layerData
+    };
   }
 
   function renderStreamGraph(el, width, data, layers) {
@@ -47,11 +61,12 @@ define([
     var m = data.length; //24 * 60, // number of samples per layer
     var stack = d3.layout.stack().offset('wiggle');
 
-    var layerData = stack(transformData(data, layers));
+    var transformedData = transformData(data, layers);
+    var layerData = stack(transformedData.transData);
     var height = 500;
 
     var startDate = data[0].date,
-        endDate = data[data.length - 1].date;
+      endDate = data[data.length - 1].date;
     var x = d3.time.scale()
       .domain([startDate, endDate])
       .range([0, width]);
@@ -66,7 +81,7 @@ define([
 
     var tickFormat = d3.time.format('%H:%M');
     // set tickFormat for greater ranges:
-    if (endDate - startDate > 24*60*60*1000) {
+    if (endDate - startDate > 24 * 60 * 60 * 1000) {
       tickFormat = d3.time.format('%d.%m');
     }
 
@@ -109,15 +124,9 @@ define([
 
 
 
-    var tooltip = d3.select('body')
-    .append('div')
-    .attr('class', 'remove')
-    .style('position', 'absolute')
-    .style('z-index', '20')
-    .style('visibility', 'hidden')
-    .style('top', '30px')
-    .style('left', '55px');
-
+    var tooltip = wrapper
+      .append('div')
+      .attr('class', 'tooltip');
 
     svg.selectAll('.stream-layer')
       .data(layerData)
@@ -129,51 +138,38 @@ define([
         return color(Math.random());
       })
 
-// TODO in own file
-      .attr('opacity', 1)
+    // TODO in own file
+    .attr('opacity', 1)
       .on('mouseover', function(d, i) {
         svg.selectAll('.stream-layer').transition()
-        .duration(250)
-        .attr('opacity', function(d, j) {
-          return j != i ? 0.6 : 1;
-      })})
+          .duration(250)
+          .attr('opacity', function(d, j) {
+            return j != i ? 0.6 : 1;
+          })
+      })
 
-      .on('mousemove', function(d, i) {
-        mousex = d3.mouse(this);
-        mousex = mousex[0];
-        var invertedx = x.invert(mousex);
-        invertedx = invertedx.getMonth() + invertedx.getDate();
-
-        console.log(layers[i]);
-
-/*        console.log(invertedx);
-        console.log(d);
-        var selected = (d.values);
-        for (var k = 0; k < selected.length; k++) {
-          datearray[k] = selected[k].date
-          datearray[k] = datearray[k].getMonth() + datearray[k].getDate();
-        }
-
-        mousedate = datearray.indexOf(invertedx);
-        pro = d.values[mousedate].value;*/
-
+    .on('mousemove', function(d, i) {
         d3.select(this)
-        .classed('hover', true)
-        .attr('stroke', '#fff')
-        .attr('stroke-width', '0.5px');
-        //tooltip.html( '<p>' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'visible');
+          .classed('hover', true)
+          .attr('stroke', '#fff')
+          .attr('stroke-width', '0.5px');
+
+        var cat = layers[i];
+        var total = transformedData.layerData[cat];
+        tooltip.html('<p>Category: <b>' + cat + '</b><br />' + total + ' comments</p>').style('visibility', 'visible');
 
       })
       .on('mouseout', function(d, i) {
-       svg.selectAll('.stream-layer')
-        .transition()
-        .duration(250)
-        .attr('opacity', '1');
+        svg.selectAll('.stream-layer')
+          .transition()
+          .duration(250)
+          .attr('opacity', '1');
         d3.select(this)
-        .classed('hover', false)
-        .attr('stroke-width', '0px');
-        //tooltip.html( '<p>' + d.key + '<br>' + pro + '</p>' ).style('visibility', 'hidden');
-    });
+          .classed('hover', false)
+          .attr('stroke-width', '0px');
+
+        tooltip.style('visibility', 'hidden');
+      });
   }
 
   return {

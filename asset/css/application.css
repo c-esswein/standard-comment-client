@@ -132,6 +132,11 @@ a {
   color: #FF9667;
 }
 
+/* line 35, ../scss/layout/_core.scss */
+b {
+  font-weight: 500;
+}
+
 /* line 2, ../scss/layout/_sidebar.scss */
 .page-sidebar {
   position: fixed;
@@ -305,6 +310,23 @@ a {
   opacity: .7;
 }
 
+/* line 2, ../scss/ui/_comments-graph.scss */
+.comment-graph {
+  position: relative;
+}
+/* line 5, ../scss/ui/_comments-graph.scss */
+.comment-graph text {
+  fill: #fff;
+}
+/* line 9, ../scss/ui/_comments-graph.scss */
+.comment-graph .tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  z-index: 20;
+}
+
 /**
  * vertical mouse helper
  */
@@ -421,15 +443,6 @@ a {
 .comments-view svg {
   width: 100%;
   height: auto;
-}
-
-/* line 10, ../scss/views/_comments.scss */
-.comment-graph {
-  position: relative;
-}
-/* line 13, ../scss/views/_comments.scss */
-.comment-graph text {
-  fill: #fff;
 }
 
 /* line 3, ../scss/views/_users.scss */

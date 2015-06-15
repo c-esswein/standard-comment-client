@@ -31,9 +31,15 @@ define([
             this.setElement(newEl);
 
             redrawGraph();
-            Filters.onChange(function() {
-                redrawGraph();
-            });
+            Filters.onChange(this.onFilterChange.bind(this));
+        },
+
+        onFilterChange: function() {
+            redrawGraph();
+        },
+
+        dispose: function() {
+            Filters.unbindChange(this.onFilterChange);
         }
     });
 

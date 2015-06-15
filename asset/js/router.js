@@ -66,6 +66,10 @@ define([
         execute: function(callback, args) {
             if (curView && curView.remove) {
                 curView.remove();
+
+                if (curView.dispose) {
+                    curView.dispose();
+                }
             }
 
             if (callback) {
@@ -76,7 +80,6 @@ define([
                 }
 
                 var showFilters = curView && !curView.hideFilters;
-                console.log(showFilters);
                 Filters.setVisibility(showFilters);
             }
         }

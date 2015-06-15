@@ -9,10 +9,12 @@ define([
     'utils',
     'd3',
     'api/article',
+    'api/comment-api',
+    'ui/StreamGraph',
 
     'text!/asset/templates/article-discussions.html',
     'text!/asset/templates/article.html'
-], function($, _, backbone, utils, d3, ArticlesApi, discussionTmplRaw, articleTemplate) {
+], function($, _, backbone, utils, d3, ArticlesApi, CommentApi, StreamGraph, discussionTmplRaw, articleTemplate) {
 
     var articleView = backbone.View.extend({
         hideFilters: true,
@@ -39,8 +41,8 @@ define([
 
                 var discussionTmpl = _.template(discussionTmplRaw);
                 var parent = $('.discussions');
-                for (var i = 0; i < articleData['data'].length; i++) {
-                    renderComment(discussionTmpl, parent, articleData['data'][i]);
+                for (var i = 0; i < articleData['discussions'].length; i++) {
+                    renderComment(discussionTmpl, parent, articleData['discussions'][i]);
                 }
 
                 function renderComment(discussionTmpl, parent, data) {
@@ -55,6 +57,10 @@ define([
                         renderComment(discussionTmpl, subDiscussionsWrapper, data['discussions'][i]);
                     }
                 }
+
+                var categories = CommentApi.categories;
+                var el = $('.comment-graph', newEl);
+                StreamGraph.render(el, wrapper.width(), articleData['comments'], categories);
 
             });
         }

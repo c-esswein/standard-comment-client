@@ -38,6 +38,9 @@ define([
     onChange: function(callback) {
       filters.on('change', callback);
     },
+    unbindChange: function(callback) {
+      filters.unbind('change', callback);
+    },
     setVisibility: function(isVisible) {
       if (isVisible) {
         $('.filters').removeClass('hide');

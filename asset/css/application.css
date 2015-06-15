@@ -450,3 +450,17 @@ b {
   list-style-type: circle;
   list-style-position: inside;
 }
+
+/* line 11, ../scss/views/_users.scss */
+.user-filter span, .user-sort span {
+  cursor: pointer;
+}
+/* line 13, ../scss/views/_users.scss */
+.user-filter span:hover, .user-sort span:hover {
+  color: #FF9667;
+}
+/* line 18, ../scss/views/_users.scss */
+.user-filter .selected, .user-sort .selected {
+  font-weight: 500;
+  text-decoration: underline;
+}

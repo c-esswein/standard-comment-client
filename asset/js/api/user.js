@@ -26,12 +26,19 @@ define([
     return api.apiCall('/users', 'GET', data);
   }
 
+  function getTopUsers(type, sort) {
+    sort = sort || 'desc'; //asc
+
+    return api.apiCall('/users?type=' + type + '&sort=' + sort, 'GET');
+  }
+
   function getUser(id) {
     return api.apiCall('/users/' + id, 'GET');
   }
 
   return {
     getUsers: getUsers,
+    getTopUsers: getTopUsers,
     getUser: getUser
   };
 });

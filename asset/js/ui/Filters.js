@@ -17,11 +17,11 @@ define([
     d.setMonth(d.getMonth() + 1);
     $('.filter-date-to').val('2015-01-02'); //getDateString(d));
 
-    filters.trigger('change');
+    filters.trigger('submit');
   })();
 
-  filters.on('change', function() {
-
+  filters.on('submit', function(e) {
+    e.preventDefault();
   });
 
   function getDateString(dateObj) {
@@ -32,14 +32,16 @@ define([
     getFormData: function() {
       var data = utils.getFormData(filters);
       data['average'] = data['average'] === 'on';
-      console.log(data);
       return data;
     },
     onChange: function(callback) {
-      filters.on('change', callback);
+      filters.on('submit', callback);
     },
     unbindChange: function(callback) {
-      filters.unbind('change', callback);
+      filters.unbind('submit');
+      filters.on('submit', function(e) {
+        e.preventDefault();
+      });
     },
     setVisibility: function(isVisible) {
       if (isVisible) {

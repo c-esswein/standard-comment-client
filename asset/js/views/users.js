@@ -13,6 +13,7 @@ define([
 ], function($, _, backbone, d3, UserApi, userTemplate) {
 
     var usersView = backbone.View.extend({
+        hideFilters: true,
 
         template: _.template(userTemplate),
 

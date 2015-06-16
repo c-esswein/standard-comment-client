@@ -39,7 +39,7 @@ define([
         },
 
         dispose: function() {
-            Filters.unbindChange(this.onFilterChange);
+            Filters.unbindChange(this.onFilterChange.bind(this));
         }
     });
 

@@ -30,10 +30,6 @@ define([
             wrapper.append(newEl);
             this.setElement(newEl);
 
-            /*CommentApi.getCategories().done(function(data) {
-              console.log(data);
-            });*/
-
             this.redrawGraph();
             Filters.onChange(this.onFilterChange.bind(this));
         },
@@ -43,7 +39,7 @@ define([
         },
 
         dispose: function() {
-            Filters.unbindChange(this.onFilterChange);
+            Filters.unbindChange(this.onFilterChange.bind(this));
         },
 
         redrawGraph: function() {
@@ -56,10 +52,6 @@ define([
             });
         }
     });
-
-
-
-
 
 
     return commentsView;

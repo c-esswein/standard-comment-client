@@ -19,7 +19,7 @@ define([
       'from': filters.from + ' 00:00:00',
       'to': filters.to + ' 00:00:00',
       //'username': 'Z\'fleiß-garnix',
-      'unit': 'hours'
+      'unit': filters['unit']
       //'category': 'Inland'
     };
 

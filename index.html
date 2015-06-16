@@ -47,9 +47,15 @@
                 <input type="date" class="filter-date filter-date-from" name="from" />
                 To:
                 <input type="date" class="filter-date filter-date-to" name="to" />
-                average:
+                average day:
                 <input type="checkbox" class="filter-cb filter-average" name="average" />
-                <!--  user, unit, category -->
+                unit:
+                <select name="unit" class="filter-select filter-unit">
+                    <option value="hours">hours</option>
+                    <option value="days">days</option>
+                    <option value="months">months</option>
+                    <option value="years">years</option>
+                </select>
             </form>
         </div>
         <div class="view-wrapper" id="view-wrapper">

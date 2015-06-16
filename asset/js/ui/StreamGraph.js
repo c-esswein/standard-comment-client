@@ -40,8 +40,6 @@ define([
       transData.push(res);
     }
 
-    console.log(layerData);
-
     return {
       transData: transData,
       layerData: layerData
@@ -117,12 +115,8 @@ define([
       .attr('transform', 'translate(0, ' + (height - 20) + ')')
       .call(xAxis);
 
-
-    var color = d3.scale.linear()
-      .range(['#4ba9df', '#80d426', '#f4b723', '#474f60']);
-    //var colors = ['#ef2212', '#ffffff', '#000000', '#88ddee', '#123eee'];
-
-
+    var colors = ['#4ba9df', '#474f60', '#f4b723', '#80d426', '#123eee',
+      '#8F98B9', '#383B45', '#F4D611', '#BED83C', '#6EF486', '#C5D0F3', '#D8853C'];
 
     var tooltip = wrapper
       .append('div')
@@ -133,12 +127,10 @@ define([
       .enter().append('path')
       .attr('class', 'stream-layer')
       .attr('d', area)
-      .style('fill', function(d, i) {
-        //return colors[i];
-        return color(Math.random());
+      .style('fill', function(d, i){
+        return colors[i];
       })
 
-    // TODO in own file
     .attr('opacity', 1)
       .on('mouseover', function(d, i) {
         svg.selectAll('.stream-layer').transition()
@@ -154,9 +146,25 @@ define([
           .attr('stroke', '#fff')
           .attr('stroke-width', '0.5px');
 
+        var mousex = d3.mouse(this);
+        mousex = mousex[0];
+        var invertedx = x.invert(mousex);
+
+        var min = Infinity;
+        var minVal = null;
+        for (var k = 0; k < d.length; k++) {
+          var diff = Math.abs(d[k].x - invertedx);
+          if (diff < min) {
+            min = diff;
+            minVal = d[k];
+          }
+        }
+
+        var info = 'At cursor: ' + minVal.y;
+
         var cat = layers[i];
         var total = transformedData.layerData[cat];
-        tooltip.html('<p>Category: <b>' + cat + '</b><br />' + total + ' comments</p>').style('visibility', 'visible');
+        tooltip.html('<p>Category: <b>' + cat + '</b><br />Total: ' + total + ' comments</p>' + info).style('visibility', 'visible');
 
       })
       .on('mouseout', function(d, i) {

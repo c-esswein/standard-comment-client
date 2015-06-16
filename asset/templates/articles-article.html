@@ -3,6 +3,7 @@
     <span class="article-cat"><%= category %></span> -
     <span class="article-subcat"><%= sub_category %></span> :
     <span class="article-date"><%= _.template.formatdate(date) %></span>
+    <span style="float: right"><%= num_comments %></span>
   </div>
   <img src="<%= image_url %>" class="article-img" />
   <h3><%= title %></h3>

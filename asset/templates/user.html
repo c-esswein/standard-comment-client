@@ -3,11 +3,14 @@
   <h2><%= user_name %></h2>
 
   <ul class="user-info">
-    <li>avg_quality_score: <%= avg_quality_score %> </li>
-    <li>avg_rating: <%= avg_rating %></li>
-    <li>avg_sentiment_score: <%= avg_sentiment_score %></li>
-    <li>num_comments: <%= num_comments %></li>
-    <li>num_replies: <%= num_replies %></li>
+    <li>Total comments: <%= num_comments %></li>
+    <li>Total number of replies: <%= num_replies %></li>
+  </ul>
+  Average on all comments:
+  <ul class="user-info">
+    <li>Quality score: <span class="color-val" data-value="<%= avg_quality_score/100 %>"><%= avg_quality_score %>%</span></li>
+    <li>Rating: <span class="color-val-rate" data-value="<%= avg_rating %>"><%= avg_rating %></span></li>
+    <li>Sentiment score: <span class="color-val" data-value="<%= (avg_sentiment_score+1)/2 %>"><%= avg_sentiment_score %></span></li>
   </ul>
 <br />
   <h3>Comment-Activity</h3>

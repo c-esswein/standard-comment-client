@@ -10,9 +10,10 @@ define([
     'api/user',
     'api/comment-api',
     'ui/StreamGraph',
+    'ui/ColorVal',
 
     'text!/asset/templates/user.html'
-], function($, _, backbone, d3, UserApi, CommentApi, StreamGraph, userTemplate) {
+], function($, _, backbone, d3, UserApi, CommentApi, StreamGraph, ColorVal, userTemplate) {
 
     var usersView = backbone.View.extend({
         hideFilters: true,
@@ -35,6 +36,8 @@ define([
 
                 wrapper.append(newEl);
                 view.setElement(newEl);
+
+                ColorVal.attach(newEl);
 
                 var categories = CommentApi.categories;
                 var el = $('.comment-graph', newEl);

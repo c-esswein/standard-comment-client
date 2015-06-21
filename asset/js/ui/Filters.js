@@ -10,6 +10,10 @@ define([
 
   var filters = $('.filters-form');
 
+  filters.on('submit', function(e) {
+    e.preventDefault();
+  });
+
   (function init() {
     var d = new Date();
     $('.filter-date-from').val('2015-01-01'); //getDateString(d));
@@ -19,10 +23,6 @@ define([
 
     filters.trigger('submit');
   })();
-
-  filters.on('submit', function(e) {
-    e.preventDefault();
-  });
 
   function getDateString(dateObj) {
     return dateObj.toISOString().substr(0, 10);
